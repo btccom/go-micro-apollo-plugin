@@ -19,27 +19,27 @@ func (a *apolloSource) String() string {
 }
 
 func (a *apolloSource) Read() (*source.ChangeSet, error) {
-	//readyConfig := &config.AppConfig{
-	//	IsBackupConfig:   true,
-	//	BackupConfigPath: "./",
-	//	AppID:            "",
-	//	Cluster:          "default",
-	//	NamespaceName:    a.namespaceName,
-	//	IP:               "",
-	//}
-	//agollo.InitCustomConfig(func() (*config.AppConfig, error) {
-	//	return readyConfig, nil
-	//})
+	// readyConfig := &config.AppConfig{
+	// 	IsBackupConfig:   true,
+	// 	BackupConfigPath: "./",
+	// 	AppID:            "",
+	// 	Cluster:          "default",
+	// 	NamespaceName:    a.namespaceName,
+	// 	IP:               "",
+	// }
+	// agollo.InitCustomConfig(func() (*config.AppConfig, error) {
+	// 	return readyConfig, nil
+	// })
 
 	if err := agollo.Start(); err != nil {
 		log.Error(err)
 	}
 	c := agollo.GetConfig(a.namespaceName)
 	content := []byte(c.GetValue("content"))
-	//b, err := a.opts.Encoder.Encode(content)
-	//if err != nil {
-	//	return nil, fmt.Errorf("error reading source: %v", err)
-	//}
+	// b, err := a.opts.Encoder.Encode(content)
+	// if err != nil {
+	// 	return nil, fmt.Errorf("error reading source: %v", err)
+	// }
 
 	cs := &source.ChangeSet{
 		Timestamp: time.Now(),
